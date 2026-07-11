@@ -85,21 +85,32 @@ The experimental evaluation demonstrated that average pixel intensity provided b
 
 ---
 
-## Repository Contents
+## Repository Structure
 
-```
-README.md
-Bachelor_Thesis.pdf
-images/
-```
+```text
+Automated-Textile-Pyrolysis-Control/
+│
+├── README.md
+├── images/
+│   ├── experimental_setup.png
+│   ├── control_system.png
+│   ├── image_processing.png
+│   └── results.png
+│
+└── docs/
+    ├── Bachelor_Thesis.pdf
+    ├── Bachelor_Thesis_Presentation.pdf
+    └── Bachelor_Thesis_Presentation.pptx
 
 ---
 
 ## Documentation
 
-The complete bachelor thesis is available in this repository.
+This repository includes:
 
-📄 [Bachelor_Thesis.pdf](Bachelor_Thesis.pdf)
+- 📄 [Bachelor Thesis (PDF)](docs/Bachelor_Thesis.pdf)
+- 📄 [Bachelor Thesis Presentation (PDF)](docs/Bachelor_Thesis_Presentation.pdf)
+- 📊 [Bachelor Thesis Presentation (PowerPoint)](docs/Bachelor_Thesis_Presentation.pptx)
 
 ---
 
