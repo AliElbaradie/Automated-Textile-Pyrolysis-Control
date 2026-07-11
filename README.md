@@ -12,6 +12,8 @@ This repository contains my bachelor's thesis on the development of an automated
 
 The project combines image processing, control engineering and LabVIEW to automatically regulate the movement of a textile sample during pyrolysis based on real-time camera images.
 
+The project was conducted as part of a university research project investigating more environmentally friendly and health-conscious flame retardants for textiles.
+
 ---
 
 ## Objectives
