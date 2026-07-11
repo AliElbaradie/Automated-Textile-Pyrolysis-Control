@@ -118,6 +118,7 @@ The complete project documentation is available in the **docs** folder.
   [Download PowerPoint](docs/bachelor_thesis_Presentation.pptx)
 
 ---
+---
 
 ## Author
 
