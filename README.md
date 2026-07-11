@@ -108,9 +108,14 @@ Automated-Textile-Pyrolysis-Control/
 
 The complete project documentation is available in the **docs** folder.
 
-- 📄 [Bachelor Thesis](docs/bachelor_thesis.pdf)
-- 📄 [Presentation (PDF)](docs/bachelor_thesis_Presentation.pdf)
-- 📊 [Presentation (PowerPoint)](docs/bachelor_thesis_Presentation.pptx)
+- 📄 **Bachelor Thesis (PDF)**  
+  [Open Thesis](docs/bachelor_thesis.pdf)
+
+- 📄 **Final Presentation (PDF)**  
+  [Open Presentation](docs/bachelor_thesis_Presentation.pdf)
+
+- 📊 **Presentation (PowerPoint)**  
+  [Download PowerPoint](docs/bachelor_thesis_Presentation.pptx)
 
 ---
 
