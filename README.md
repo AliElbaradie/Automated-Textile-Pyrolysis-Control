@@ -101,7 +101,7 @@ The complete bachelor thesis is available in this repository.
 
 📄 **Bachelor_Thesis.pdf**
 
-📄 [Bachelor_Thesis.pdf](docs/Bachelor_Thesis.pdf)
+📄 [Bachelor_Thesis.pdf](Bachelor_Thesis.pdf)
 
 ---
 
