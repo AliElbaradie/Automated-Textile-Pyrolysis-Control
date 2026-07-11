@@ -28,19 +28,23 @@ The project was conducted as part of a university research project investigating
 
 ## Technologies
 
-**Programming & Software**
+### Programming & Software
+
 - LabVIEW
 
-**Control Engineering**
+### Control Engineering
+
 - Digital PID Control
 - Closed-loop Control
 
-**Image Processing**
+### Image Processing
+
 - Machine Vision
 - Image Acquisition
 - Pixel Intensity Analysis
 
-**Hardware**
+### Hardware
+
 - IDS Industrial Camera
 - Stepper Motor
 - Tube Furnace
@@ -98,9 +102,10 @@ Automated-Textile-Pyrolysis-Control/
 │   └── results.png
 │
 └── docs/
-    ├── Bachelor_Thesis.pdf
-    ├── Bachelor_Thesis_Presentation.pdf
-    └── Bachelor_Thesis_Presentation.pptx
+    ├── bachelor_thesis.pdf
+    ├── bachelor_thesis_Presentation.pdf
+    └── bachelor_thesis_Presentation.pptx
+```
 
 ---
 
@@ -108,16 +113,10 @@ Automated-Textile-Pyrolysis-Control/
 
 The complete project documentation is available in the **docs** folder.
 
-- 📄 **Bachelor Thesis (PDF)**  
-  [Open Thesis](docs/bachelor_thesis.pdf)
+- 📄 [Bachelor Thesis (PDF)](docs/bachelor_thesis.pdf)
+- 📄 [Final Presentation (PDF)](docs/bachelor_thesis_Presentation.pdf)
+- 📊 [Presentation (PowerPoint)](docs/bachelor_thesis_Presentation.pptx)
 
-- 📄 **Final Presentation (PDF)**  
-  [Open Presentation](docs/bachelor_thesis_Presentation.pdf)
-
-- 📊 **Presentation (PowerPoint)**  
-  [Download PowerPoint](docs/bachelor_thesis_Presentation.pptx)
-
----
 ---
 
 ## Author
