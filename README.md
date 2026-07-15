@@ -22,6 +22,7 @@ The project was conducted as part of a university research project investigating
 - Implement a digital PID controller in LabVIEW
 - Process camera images in real time
 - Automatically control the textile movement
+- Evaluate controller performance through experimental data analysis
 - Experimentally validate the developed control strategy
 
 ---
