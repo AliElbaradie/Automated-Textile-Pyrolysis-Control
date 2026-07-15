@@ -31,6 +31,7 @@ The project was conducted as part of a university research project investigating
 ### Programming & Software
 
 - LabVIEW
+- Python (NumPy, Matplotlib)
 
 ### Control Engineering
 
@@ -73,7 +74,6 @@ The control algorithm continuously performs the following steps:
 4. Compare the measured value with the reference value
 5. Compute the PID controller output
 6. Adjust the motor speed
-7. Analyze and visualize experimental data using Python (NumPy and Matplotlib)
 
 Two image-based control variables were investigated:
 
