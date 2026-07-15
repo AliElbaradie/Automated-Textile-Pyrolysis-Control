@@ -87,6 +87,13 @@ The developed control system successfully automated the textile pyrolysis experi
 
 The experimental evaluation demonstrated that average pixel intensity provided better control performance than burn mark width, resulting in improved control accuracy, stability and dynamic response.
 
+Experimental data were analyzed and visualized using **Python**, utilizing **NumPy** for numerical data processing and **Matplotlib** for generating performance plots. The resulting analyses were used to evaluate controller performance, compare different control strategies and assess process stability.
+
+<p align="center">
+<img src="images/results.png" width="90%">
+</p>
+
+*Comparison of stable and unstable controller behavior based on experimental data.*
 ---
 
 ## Repository Structure
