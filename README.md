@@ -73,6 +73,7 @@ The control algorithm continuously performs the following steps:
 4. Compare the measured value with the reference value
 5. Compute the PID controller output
 6. Adjust the motor speed
+7. Analyze and visualize experimental data using Python (NumPy and Matplotlib)
 
 Two image-based control variables were investigated:
 
@@ -93,7 +94,9 @@ Experimental data were analyzed and visualized using **Python**, utilizing **Num
 <img src="images/results.png" width="90%">
 </p>
 
-*Comparison of stable and unstable controller behavior based on experimental data.*
+> **Note**
+>
+> The figure illustrates the comparison between stable and unstable controller behavior obtained from experimental measurements.
 ---
 
 ## Repository Structure
