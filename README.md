@@ -64,7 +64,7 @@ The figures below show the **actual laboratory setup** used during the experimen
 ### Laboratory Setup
 
 <p align="center">
-<img src="images/experimental_setup_lab.jpg" width="80%">
+<img src="images/experimental_setup_lab.jpg" width="70%">
 </p>
 
 ### Experimental System Overview
