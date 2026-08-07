@@ -70,7 +70,7 @@ The figures below show the **actual laboratory setup** used during the experimen
 ### Experimental System Overview
 
 <p align="center">
-<img src="images/experimental_setup.jpg" width="80%">
+<img src="images/experimental_setup.png" width="80%">
 </p>
 
 ---
@@ -117,6 +117,7 @@ Automated-Textile-Pyrolysis-Control/
 │
 ├── README.md
 ├── images/
+│   ├── experimental_setup_lab.jpg
 │   ├── experimental_setup.png
 │   ├── control_system.png
 │   ├── image_processing.png
