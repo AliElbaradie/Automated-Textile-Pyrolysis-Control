@@ -59,9 +59,19 @@ The experimental setup consists of an industrial camera, a stepper motor, a cust
 
 The camera continuously captures images of the textile during pyrolysis. These images are processed in LabVIEW, where a digital PID controller automatically adjusts the motor speed to maintain the desired process conditions.
 
-### Experimental Setup
+The figures below show the **actual laboratory setup** used during the experiments together with a **schematic overview** of the experimental system.
 
-![Experimental Setup](images/experimental_setup.png)
+### Laboratory Setup
+
+<p align="center">
+<img src="images/experimental_setup_lab.jpg" width="80%">
+</p>
+
+### Experimental System Overview
+
+<p align="center">
+<img src="images/experimental_setup.jpg" width="80%">
+</p>
 
 ---
 
