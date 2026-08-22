@@ -1,7 +1,7 @@
 # Automated Control of Textile Pyrolysis Experiments Using Machine Vision
 
-**Bachelor Thesis**
-**University of Duisburg-Essen**
+**Bachelor Thesis**<br>
+**University of Duisburg-Essen**<br>
 **Completed: July 2024**
 
 ---
@@ -314,8 +314,8 @@ The repository is maintained as a documentation and portfolio project containing
 
 ## Author
 
-**Ali Elbaradie**
-Bachelor Thesis
-B.Sc. Mechanical Engineering
-University of Duisburg-Essen
+**Ali Elbaradie**<br>
+Bachelor Thesis<br>
+B.Sc. Mechanical Engineering<br>
+University of Duisburg-Essen<br>
 **Completed: July 2024**
