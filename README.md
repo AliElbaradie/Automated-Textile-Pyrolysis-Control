@@ -1,7 +1,7 @@
 # Automated Control of Textile Pyrolysis Experiments Using Machine Vision
 
-**Bachelor Thesis**  
-**University of Duisburg-Essen**  
+**Bachelor Thesis**
+**University of Duisburg-Essen**
 **Completed: July 2024**
 
 ---
@@ -10,70 +10,37 @@
 
 This repository contains my bachelor's thesis on the development of an automated control system for textile pyrolysis experiments using **machine vision** and **digital PID control**.
 
-The project combines **image acquisition, image processing, control engineering, LabVIEW and experimental hardware** to automatically regulate the movement of a textile sample during pyrolysis based on real-time camera measurements.
+The project combines **image acquisition, image processing, control engineering, LabVIEW and experimental hardware** to automatically regulate the movement of a textile sample during pyrolysis based on real-time camera measurements. It was conducted as part of a university research project investigating more environmentally friendly and health-conscious flame retardants for textiles.
 
-The project was conducted as part of a university research project investigating more environmentally friendly and health-conscious flame retardants for textiles.
+An industrial camera observes the pyrolysis process. The acquired images are processed in **LabVIEW** to extract process-relevant image features, which serve as feedback variables for a closed-loop PID controller. The controller adjusts the speed of a stepper motor that controls the movement of the textile.
 
-The developed system uses an industrial camera to observe the pyrolysis process. The acquired images are processed in **LabVIEW** to extract process-relevant image features, which are then used as feedback variables for a closed-loop PID controller. The controller adjusts the speed of a stepper motor that controls the movement of the textile.
+Two image-based control strategies were investigated and compared: **burn mark width** and **mean pixel intensity** (see [Results](#results) for the outcome).
 
-Two different image-based control strategies were investigated:
+### Objectives
 
-- **Burn mark width**
-- **Mean pixel intensity**
-
-The experimental evaluation showed that **mean pixel intensity provided better control performance** than burn mark width under the investigated conditions.
-
----
-
-## Objectives
-
-- Develop an automated closed-loop control system
-- Implement a digital PID controller in LabVIEW
-- Acquire and process camera images in real time
-- Extract process-relevant variables from image data
-- Automatically control textile movement using a stepper motor
-- Investigate different image-based control variables
-- Evaluate controller performance through experimental data analysis
-- Experimentally validate the developed control strategy
+- Develop an automated closed-loop control system with a digital PID controller implemented in LabVIEW
+- Acquire and process camera images in real time to extract process-relevant variables
+- Automatically control textile movement via a stepper motor
+- Investigate and experimentally compare different image-based control variables
+- Evaluate and validate controller performance through experimental data analysis
 
 ---
 
 ## Technologies
 
 ### Programming & Software
-
 - LabVIEW
-- Python
-- NumPy
-- Matplotlib
+- Python (NumPy, Matplotlib)
 
 ### Control Engineering
-
-- Digital PID Control
-- Closed-loop Control
-- PID Autotuning
+- Digital PID Control / Closed-loop Control
+- PID Autotuning / Self-optimizing Control
 - Feedback Control
-- Self-optimizing Control
 
 ### Computer Vision & Image Processing
-
-- Real-time Image Acquisition
-- Image Preprocessing
-- Grayscale Conversion
-- Color Channel Extraction
-- Blue Channel Analysis
-- Region of Interest (ROI) / Image Section Analysis
-- Spatial Averaging
-- Pixel Intensity Analysis
-- 1D Intensity Profile Extraction
-- Savitzky–Golay Filtering
-- Central-Difference Derivative
-- Feature/Edge Localization using Signal Extrema
-- Pixel-to-Physical-Unit Calibration
-- Image-based Process Variable Extraction
+Core techniques used are summarized in [Key Computer Vision Concepts](#key-computer-vision-concepts) below.
 
 ### Hardware
-
 - IDS Industrial Camera
 - Stepper Motor with Integrated Controller
 - Magnetic Absolute Encoder
@@ -87,22 +54,16 @@ The experimental evaluation showed that **mean pixel intensity provided better c
 
 The experimental setup consists of an **industrial camera, stepper motor, custom-built test bench, tube furnace, controlled illumination and a LabVIEW-based control system**.
 
-The camera acts as the measurement device and continuously observes the textile during pyrolysis. The stepper motor acts as the actuator and controls the movement of the textile.
+The camera acts as the measurement device and continuously observes the textile during pyrolysis. The stepper motor acts as the actuator and controls the movement of the textile. The computer running LabVIEW serves as the interface between camera and motor, performing image processing and closed-loop control.
 
-The computer running LabVIEW serves as the interface between the camera and motor and performs the image processing and closed-loop control.
-
-The experimental camera featured a color sensor with a resolution of **1920 × 1200 pixels** and was connected to the computer via USB 3.0. The motor was operated through a USB interface and featured an integrated magnetic absolute encoder.
-
-The figures below show the **actual laboratory setup** used during the experiments together with a **schematic overview** of the experimental system.
+The camera featured a color sensor with a resolution of **1920 × 1200 pixels**, connected via USB 3.0. The motor was operated through a USB interface and featured an integrated magnetic absolute encoder.
 
 ### Laboratory Setup
-
 <p align="center">
 <img src="images/experimental_setup_lab.jpg" width="70%">
 </p>
 
 ### Experimental System Overview
-
 <p align="center">
 <img src="images/experimental_setup.png" width="80%">
 </p>
@@ -111,11 +72,7 @@ The figures below show the **actual laboratory setup** used during the experimen
 
 ## Control System
 
-The experimental system is implemented as a **closed-loop feedback control system**.
-
-The camera measures the current state of the pyrolysis process. LabVIEW processes the acquired image and determines the selected process variable. This value is compared with the desired setpoint, and the PID controller calculates the required motor speed.
-
-The motor then moves the textile accordingly, changing the position of the pyrolysis zone and therefore influencing the measured process variable.
+The system is implemented as a **closed-loop feedback control system**: the camera measures the current process state, LabVIEW extracts the selected process variable, compares it to the setpoint, and the PID controller calculates the required motor speed. The motor then repositions the textile relative to the pyrolysis zone, which changes the measured process variable — closing the feedback loop.
 
 ```text
                   Setpoint
@@ -158,166 +115,58 @@ The motor then moves the textile accordingly, changing the position of the pyrol
                      └────────── Feedback
 ```
 
-The motor speed is the manipulated variable, while the camera-derived process variable is fed back to the controller.
-
 ---
 
 ## Computer Vision & Image Processing
 
-The machine-vision system was developed to extract measurable process information from the visual appearance of the pyrolyzing textile.
-
-Two different image-processing approaches were investigated.
-
----
+The machine-vision system extracts measurable process information from the visual appearance of the pyrolyzing textile. Two approaches were investigated.
 
 ### 1. Burn Mark Width Detection
 
-For burn mark width control, the acquired color image is first converted to **grayscale**.
-
-This reduces the three color channels to a single intensity representation and allows the burn mark to be analyzed as a one-dimensional intensity profile.
-
-A horizontal image section is extracted from the relevant area of the textile. The pixel intensities are then **arithmetically averaged along the vertical direction**, resulting in a one-dimensional intensity profile along the X-axis.
-
-The burn mark appears as a region of reduced intensity compared with the surrounding unburned textile.
+The acquired color image is converted to **grayscale**, reducing it to a single intensity representation. A horizontal image section (ROI) is extracted from the relevant textile area, and pixel intensities are **arithmetically averaged along the vertical direction**, resulting in a 1D intensity profile along the X-axis. The burn mark appears as a region of reduced intensity compared to the surrounding unburned textile.
 
 ```text
-Camera Image
-     │
-     ▼
-Grayscale Conversion
-     │
-     ▼
-Image Section / ROI
-     │
-     ▼
-Vertical Spatial Averaging
-     │
-     ▼
-1D Pixel-Intensity Profile
-     │
-     ▼
-Savitzky–Golay Filtering
-     │
-     ▼
-Central-Difference Derivative
-     │
-     ▼
-Detection of Characteristic Extrema
-     │
-     ▼
-Distance Between Detected Points
-     │
-     ▼
-Burn Mark Width
+Camera Image → Grayscale Conversion → Image Section / ROI
+   → Vertical Spatial Averaging → 1D Pixel-Intensity Profile
+   → Savitzky–Golay Filtering → Central-Difference Derivative
+   → Detection of Characteristic Extrema → Distance Between Points
+   → Burn Mark Width
 ```
 
-### Signal Smoothing
+**Signal smoothing:** The extracted profile contains measurement noise, which is especially problematic when computing its derivative. A **Savitzky–Golay filter** (first-degree polynomial, local fitting) is applied to reduce noise while preserving the underlying signal shape.
 
-The extracted intensity profile contains measurement noise, which becomes particularly problematic when calculating its derivative.
+**Derivative-based edge localization:** The smoothed profile is differentiated using the **central-difference method**. The burn mark boundaries appear as extrema in the derivative signal; the distance between them is the current burn mark width.
 
-A **Savitzky–Golay filter** is therefore applied to smooth the signal while preserving important signal characteristics.
-
-In the implemented analysis, a first-degree polynomial was used for local fitting. The filter reduces noise while maintaining the shape of the underlying intensity profile.
-
-### Derivative-Based Edge Localization
-
-After smoothing, the intensity profile is differentiated using the **central-difference method**.
-
-The characteristic points corresponding to the burn mark boundaries appear as extrema in the derivative signal.
-
-The distance between the detected extrema is used as the current **burn mark width**.
-
-### Pixel-to-Physical Calibration
-
-The detected burn mark width is initially obtained in pixels.
-
-A calibration measurement was performed to determine the relationship between image pixels and physical distance.
-
-The experimental calibration resulted in approximately:
+**Pixel-to-physical calibration:** The detected width is initially in pixels. A calibration measurement established the relationship:
 
 ```text
 140 pixels ≈ 1 cm
 14 pixels  ≈ 1 mm
 ```
 
-This allows the detected burn mark width to be converted from pixels into physical units such as millimeters.
-
----
+This converts the burn mark width from pixels into millimeters.
 
 ### 2. Mean Pixel Intensity
 
-The second control strategy uses the **mean pixel intensity of an image region** as the process variable.
-
-Before pyrolysis, the textile is relatively bright and therefore produces high pixel-intensity values. As pyrolysis progresses, a darker burn mark develops and the measured intensity decreases.
-
-The objective is therefore to maintain a predefined mean pixel intensity corresponding to the desired degree of pyrolysis.
-
-The image-processing sequence is:
+This strategy uses the **mean pixel intensity of an image region** as the process variable. Before pyrolysis, the textile is bright (high intensity); as pyrolysis progresses, a darker burn mark develops and intensity decreases. The goal is to maintain a predefined mean intensity corresponding to the desired degree of pyrolysis.
 
 ```text
-Camera Image
-     │
-     ▼
-Color Channel Selection
-     │
-     ▼
-Blue Channel Extraction
-     │
-     ▼
-Image Region / ROI
-     │
-     ▼
-Mean Pixel Intensity
-     │
-     ▼
-PID Controller
+Camera Image → Color Channel Selection → Blue Channel Extraction
+   → Image Region / ROI → Mean Pixel Intensity → PID Controller
 ```
 
-### Blue Channel Selection
+**Blue channel selection:** Of the three color channels, the **blue channel** was selected because, based on experimental comparison of the intensity decay of all channels, it showed the strongest and fastest intensity response to burn mark formation.
 
-The camera provides three color channels.
-
-The **blue channel** was selected for the control algorithm because it showed a stronger and faster intensity response to the formation of the burn mark than the other color channels.
-
-The intensity decay of the different color channels was experimentally investigated. The blue channel showed the strongest sensitivity to the development of the burn mark and was therefore selected as the measurement basis for this control strategy.
-
-### Spatial Averaging
-
-After extracting the selected image region, the pixel intensities within the region are averaged.
-
-This produces a single scalar process variable representing the current mean image intensity.
-
-The calculated value is then passed to the PID controller.
+**Spatial averaging:** Pixel intensities within the selected ROI are averaged into a single scalar process variable, which is passed to the PID controller.
 
 ---
 
 ## PID Autotuning
 
-The LabVIEW **PID Autotuning VI** was used to determine suitable PID controller parameters for the experimental process.
+The LabVIEW **PID Autotuning VI** was used to determine suitable controller parameters via a **self-optimizing PID approach**: an initial parameter set is applied, the process is excited, and its dynamic response is observed. The autotuning routine then adjusts the parameters — iteratively refined with the objective of minimizing the **mean control error over time**. Users can also specify preferences such as desired response speed.
 
-The implemented controller uses a **self-optimizing PID approach**.
-
-The tuning procedure starts with an initial set of controller parameters. The process is then excited and its dynamic response is observed. Based on the measured response, the autotuning routine adjusts the controller parameters to improve the control performance.
-
-According to the experimental methodology, the initial controller parameters were determined iteratively and subsequently adapted by the LabVIEW self-tuning routine with the objective of minimizing the **mean control error over time**.
-
-The user can also specify preferences regarding the desired controller response, such as the desired speed of response.
-
-The PID controller parameters include:
-
-- Proportional gain (**Kc**)
-- Integral time (**Ti**)
-- Derivative time (**Td**)
-
-The autotuning interface also provides parameters for configuring the tuning procedure, including:
-
-- Controller type
-- Relay cycles
-- Relay amplitude
-- Control specification
-- Process-variable noise level
-
-### PID Autotuning Interface
+Controller parameters: **Kc** (proportional gain), **Ti** (integral time), **Td** (derivative time).
+Tuning configuration parameters: controller type, relay cycles, relay amplitude, control specification, process-variable noise level.
 
 <p align="center">
 <img src="images/pid_block.png" width="80%">
@@ -329,39 +178,34 @@ The autotuning interface also provides parameters for configuring the tuning pro
 
 ## LabVIEW Implementation
 
-The complete control system was implemented in **LabVIEW**.
+The complete control system was implemented in **LabVIEW**, integrating camera acquisition, image processing, process-variable extraction, PID control, motor communication and user interaction:
 
-The application integrates camera acquisition, image processing, process-variable extraction, PID control, motor communication and user interaction.
-
-The implemented software is responsible for:
-
-- Camera image acquisition
-- Real-time image visualization
-- Image-region / ROI processing
-- Grayscale conversion
-- Color-channel extraction
-- Pixel-intensity analysis
-- Spatial averaging
-- Signal smoothing
-- Derivative calculation
-- Burn mark width calculation
-- Pixel-to-physical-unit conversion
-- PID controller execution
-- PID parameter configuration
-- PID autotuning
-- Motor speed control
-- Motor communication and status monitoring
-- Measurement and image storage
-- Real-time process visualization
+- Camera image acquisition & real-time visualization
+- Image-region (ROI) processing: grayscale conversion, color-channel extraction, pixel-intensity analysis, spatial averaging
+- Signal smoothing and derivative calculation, burn mark width calculation, pixel-to-physical-unit conversion
+- PID controller execution, parameter configuration and autotuning
+- Motor speed control, communication and status monitoring
+- Measurement/image storage and real-time process visualization
 - Manual and automatic control operation
 
----
+### Front Panel (User Interface)
 
-## LabVIEW Control Block Diagram
+The front panel is the centralized interface for operating and monitoring the system, providing:
 
-The following image shows a section of the complete LabVIEW block diagram responsible for the **actual closed-loop control operation**.
+- Live camera image and processed ROI display
+- Motor controls (start/stop, reset, quick-stop, direction, speed) and status/error display
+- Setpoint and PID parameter configuration, autotuning control, closed-loop activation
+- Camera exposure-time configuration
+- Pixel-intensity and derivative-signal visualization
+- Image-processing parameter configuration
 
-The shown section integrates image-processing results, process-variable calculation, PID control, speed calculation and motor-control logic.
+<p align="center">
+<img src="images/regelung_front_panel.png" width="90%">
+</p>
+
+### Control Block Diagram
+
+The image below shows the section of the LabVIEW block diagram responsible for the **closed-loop control operation** — integrating image-processing results, process-variable calculation, PID control, speed calculation and motor-control logic.
 
 <p align="center">
 <img src="images/regelung_block_diagram.png" width="90%">
@@ -371,93 +215,37 @@ The shown section integrates image-processing results, process-variable calculat
 
 ---
 
-## LabVIEW Front Panel
-
-The LabVIEW front panel serves as the **user interface for operating and monitoring the experimental control system**.
-
-It provides a centralized interface for configuring the controller, operating the motor and observing the camera-based measurement and image-processing results.
-
-The interface provides:
-
-- Live camera image display
-- Processed Region of Interest (ROI) display
-- Motor start/stop control
-- Motor reset and quick-stop functions
-- Motor direction control
-- Motor speed configuration
-- Motor speed monitoring
-- Motor communication and error status
-- Setpoint configuration
-- PID parameter configuration
-- PID autotuning control
-- Closed-loop control activation
-- Camera exposure-time configuration
-- Image acquisition and storage
-- Pixel-intensity visualization
-- Derivative-signal visualization
-- Image-processing parameter configuration
-- Measurement and process monitoring
-
-<p align="center">
-<img src="images/regelung_front_panel.png" width="90%">
-</p>
-
----
-
 ## Results
 
-The developed control system successfully automated the textile pyrolysis experiment.
+Experiments were conducted for both control strategies at different setpoints and temperatures (burn mark width: **400 °C and 500 °C**; pixel intensity: multiple target intensities at different temperatures).
 
-Two different process variables were investigated:
+The image-based control approach successfully converted the visual state of the pyrolysis process into a measurable variable usable directly within a feedback control loop. The experimental evaluation showed that **mean pixel intensity provided better control performance than burn mark width** under the investigated conditions.
 
-1. Burn mark width
-2. Mean pixel intensity
+Experimental data were analyzed and visualized in **Python** (NumPy for numerical processing, Matplotlib for visualization) to:
 
-For burn mark width control, experiments were conducted at different setpoints and temperatures, including **400 °C and 500 °C**.
-
-For pixel-intensity control, different target intensities were investigated at different experimental temperatures.
-
-The experimental evaluation demonstrated that the **mean pixel intensity approach provided better control performance** than the burn mark width approach under the investigated conditions.
-
-The image-based control approach enabled the visual state of the pyrolysis process to be converted into a measurable process variable and used directly within a feedback control loop.
-
-Experimental data were analyzed and visualized using **Python**, with:
-
-- **NumPy** for numerical data processing
-- **Matplotlib** for data visualization
-
-The analyses were used to:
-
-- Evaluate controller performance
-- Compare different control variables
+- Evaluate controller performance and control accuracy
+- Compare the two control variables
 - Analyze steady-state behavior
-- Evaluate control accuracy
-- Compare stable and unstable controller behavior
+- Compare stable vs. unstable controller behavior
 - Assess the dynamic response of the control system
 
 <p align="center">
 <img src="images/results.png" width="90%">
 </p>
 
-> **Note**
->
-> The figure illustrates controller behavior obtained from experimental measurements.
+> **Note:** The figure illustrates controller behavior obtained from experimental measurements.
 
 ---
 
 ## Demonstration
 
-A video demonstration of the complete experimental system is currently **not available**.
-
-The project was conducted as a university laboratory research project, and the experimental equipment used during the experiments — including the industrial camera, stepper motor, test bench and associated laboratory hardware — is no longer available for recording a new demonstration.
+A video demonstration of the complete experimental system is currently **not available**. The project was conducted as a university laboratory research project, and the equipment used (industrial camera, stepper motor, test bench and associated lab hardware) is no longer available for recording a new demonstration.
 
 The repository therefore focuses on the **LabVIEW implementation, computer-vision algorithms, control architecture, experimental setup, analysis results and project documentation**.
 
 ---
 
 ## Key Computer Vision Concepts
-
-The project demonstrates practical application of classical image-processing techniques for closed-loop process control:
 
 | Concept | Application in the Project |
 |---|---|
@@ -520,8 +308,6 @@ The complete project documentation is available in the **docs** folder.
 
 **Completed – July 2024**
 
-The experimental development and validation were completed as part of the bachelor's thesis.
-
 The repository is maintained as a documentation and portfolio project containing the developed LabVIEW software, image-processing approach, control architecture, experimental results and thesis documentation.
 
 ---
@@ -529,9 +315,7 @@ The repository is maintained as a documentation and portfolio project containing
 ## Author
 
 **Ali Elbaradie**
-
-Bachelor Thesis  
-B.Sc. Mechanical Engineering  
-University of Duisburg-Essen  
-
+Bachelor Thesis
+B.Sc. Mechanical Engineering
+University of Duisburg-Essen
 **Completed: July 2024**
