@@ -30,7 +30,7 @@ Two image-based control strategies were investigated and compared: **burn mark w
 
 ### Programming & Software
 - LabVIEW
-- Python (NumPy, Matplotlib)
+- Python (NumPy, Matplotlib) — used for post-experiment data analysis and visualization (see [`analysis/`](analysis/))
 
 ### Control Engineering
 - Digital PID Control / Closed-loop Control
@@ -215,13 +215,23 @@ The image below shows the section of the LabVIEW block diagram responsible for t
 
 ---
 
+## Data Analysis (Python)
+
+In addition to the LabVIEW control system, part of the experimental data — specifically for the **burn mark width** control strategy — was analyzed and visualized in **Python** using **NumPy** and **Matplotlib**.
+
+The recovered script [`analysis/plot_burn_mark_width.py`](analysis/plot_burn_mark_width.py) was used to post-process the raw measurement data recorded during the burn-mark-width experiments and to generate the corresponding comparison plots discussed in [Results](#results).
+
+> **Note:** This script is a standalone analysis tool operating on previously recorded experimental data — it is not part of the real-time LabVIEW control loop. Additional analysis scripts (e.g. for the mean pixel intensity strategy) were used during the thesis but could not be recovered.
+
+---
+
 ## Results
 
 Experiments were conducted for both control strategies at different setpoints and temperatures (burn mark width: **400 °C and 500 °C**; pixel intensity: multiple target intensities at different temperatures).
 
 The image-based control approach successfully converted the visual state of the pyrolysis process into a measurable variable usable directly within a feedback control loop. The experimental evaluation showed that **mean pixel intensity provided better control performance than burn mark width** under the investigated conditions.
 
-Experimental data were analyzed and visualized in **Python** (NumPy for numerical processing, Matplotlib for visualization) to:
+Experimental data were analyzed and visualized in **Python** (NumPy for numerical processing, Matplotlib for visualization; see [Data Analysis (Python)](#data-analysis-python)) to:
 
 - Evaluate controller performance and control accuracy
 - Compare the two control variables
@@ -274,6 +284,9 @@ Automated-Textile-Pyrolysis-Control/
 ├── LabVIEW/
 │   └── Textile_Pyrolysis_Control.vi
 │
+├── analysis/
+│   └── plot_burn_mark_width.py
+│
 ├── images/
 │   ├── experimental_setup_lab.jpg
 │   ├── experimental_setup.png
@@ -301,6 +314,7 @@ The complete project documentation is available in the **docs** folder.
 - 📄 [Bachelor Thesis (PDF)](docs/bachelor_thesis.pdf)
 - 📄 [Final Presentation (PDF)](docs/bachelor_thesis_Presentation.pdf)
 - 📊 [Presentation (PowerPoint)](docs/bachelor_thesis_Presentation.pptx)
+- 🐍 [Python Analysis Script – Burn Mark Width](analysis/plot_burn_mark_width.py)
 
 ---
 
