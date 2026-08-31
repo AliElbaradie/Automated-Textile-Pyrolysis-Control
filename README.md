@@ -326,6 +326,14 @@ The repository is maintained as a documentation and portfolio project containing
 
 ---
 
+---
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
 ## Author
 
 **Ali Elbaradie**<br>
